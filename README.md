@@ -213,6 +213,45 @@ window.onload = function () {
 이벤트 버블링은 자식 노드에서 부모 노드 순으로 이벤트가 실행되는 것을 의미한다.  
 가끔은 이 버블링을 막아야 할 경우가 생기는데, 보통 event.stopPropagation()을 통해 막는다.
 
-## Node.js, Restful API
+## Node.js, Express, Restful API
+
+**express 서버 생성 기본형식**
+
+```javascript
+let http = require("http"); // 웹 서버를 생성하는 것과 관련된 모든 기능 담당
+let express = require("express"); // node.js를 위한 빠르고 간편한 웹 프레임워크
+
+let app = express();
+
+http.createServer(app).listen(포트번호, function () {
+  console.log("포트 몇 번 연결 완료~ 하고싶은말~");
+});
+```
+
+**[미들웨어]**  
+클라이언트에서 요청이 오고, 그 요청을 보내기 위해서 응답하려는 중간에 껴서 목적에 맞게 처리해주는, 즉 거쳐가는 함수들을 말한다.  
+이 함수는 req(요청) 객체, res(응답) 객체 그리고 어플리케이션 요청-응답 다음 미들웨어 함수에 대한 엑세스 권한을 갖는다.
+
+app.use() 메서드에 입력하는 콜백 함수는 request 이벤트 리스너다.
+
+미들 웨어를 활용한 것들이 대한 몇 개의 예시는 아래와 같다.
+
+- app.use(express.bodyParser())
+- app.use(express.session())
+- app.use(express.static('public')) : 정적 파일 제공
+- app.use(app.router)
+
+**[라우터]**  
+사용자 요청에 따라 필요한 정보를 제공하는 기능을 수행하는 미들웨어를 말한다.  
+app 객체의 속성이며, 메서드 종류는 아래와 같다.
+
+- get()
+- post()
+- put()
+- del()
+- all()
+
+**[Restful API]**  
+http 요청을 보낼 때 URI에 어떤 메소드를 사용할지 개발자들 사이에서 지키는 약속과 같다.
 
 ## JSP
