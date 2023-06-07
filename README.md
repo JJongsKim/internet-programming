@@ -136,6 +136,54 @@ Square.prototype = Rectangle.prototype;
 Square.prototype.constructor = Square;
 ```
 
+이 외에도 class로 생성자를 선언하는 방법도 있다.
+
+```javascript
+class Rectangle {
+  // 생성자
+  constructor(width, height) {
+    this._width = width;
+    this._height = height;
+  }
+
+  // width의 게터 | 세터
+  get width() {
+    return this._width;
+  }
+  set width(input) {
+    this._width = input;
+  }
+
+  // height의 게터 | 세터
+  get height() {
+    return this._height;
+  }
+  set height(input) {
+    this._height = input;
+  }
+
+  getArea() {
+    return this._width * this._height;
+  }
+}
+
+// Rectangle의 내용을 상속받는 Sqaure 클래스 생성하기
+class Square extends Rectangle {
+  constructor(length) {
+    super(length, length);
+    alert(this);
+  }
+  set width(input) {
+    this._width = input;
+    this._height = input;
+  }
+  set height(input) {
+    this._width = input;
+    this._height = input;
+  }
+}
+```
+
 **[window객체의 onload 이벤트 속성]**  
 onload를 통해 동적으로 페이지를 생성하고 결과물을 출력할 수 있다. 관련 예시 코드는 lab7.html 파일을 참고하면 확인해볼 수 있다.
 
