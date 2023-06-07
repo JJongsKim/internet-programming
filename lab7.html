@@ -7,3 +7,51 @@
 - 두 번째 : 클릭 시 내용 변경하기
 - 세 번째 : 타이머를 적용하여 깜빡이도록 하기
 - 네 번째 : 클릭된 횟수 아래에 보여주기 -->
+
+<html>
+  <head>
+    <title>LAB7</title>
+  </head>
+  <script>
+    window.onload = function () {
+      // id 값
+      const idArray = ["one", "two", "three", "four", "counter"];
+      const colorArray = ["red", "blue", "yellow", "pink", "purple"];
+
+      // 동적으로 hello word 헤더, 0 카운터 만들기
+      for (let i = 0; i < 5; i++) {
+        let header = document.createElement("h1");
+
+        if (i == 4) {
+          header.textContent = "0";
+          header.setAttribute("id", idArray[i]);
+          document.body.appendChild(header);
+        } else {
+          header.textContent = "Hello world!";
+          header.setAttribute("id", idArray[i]);
+          document.body.appendChild(header);
+        }
+      }
+
+      one.onclick = function () {
+        // 색상 배열에 있는 색 중 클릭 시 랜덤으로 바뀌도록
+        let random = colorArray[Math.floor(Math.random() * colorArray.length)];
+        one.style.color = random;
+      };
+      two.onclick = function () {
+        two.innerHTML = "Java Script";
+      };
+      three.onclick = function () {
+        setInterval(() => {
+          three.innerHTML = "world!";
+          setTimeout(() => {
+            three.innerHTML = "hello";
+          }, 500);
+        }, 1000);
+      };
+      four.onclick = function () {
+        counter.innerHTML = Number(counter.innerHTML) + 1;
+      };
+    };
+  </script>
+</html>
