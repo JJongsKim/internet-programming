@@ -21,3 +21,52 @@ Area: (100, 200) to (150, 250) = 2500
 Circumstance: (100, 200) to (150, 250) = 200
 
 ``` -->
+
+<html>
+  <head>
+    <title>LAB4</title>
+  </head>
+  <script>
+    // 필요한 파라미터와 값이 없을 때의 초깃값 세팅하기
+    function makeSquare(leftX = 10, leftY = 10, rightX = 100, rightY = 100) {
+      const getArea = function () {
+        return Math.abs(leftX - rightX) * Math.abs(leftY - rightY);
+      };
+
+      const getCircumstance = function () {
+        return Math.abs(leftX - rightX) * 2 + Math.abs(leftY - rightY) * 2;
+      };
+
+      // 함수 생성하는 것만으로 끝내는 것이 아닌
+      // 외부에서도 값을 읽을 수 있도록 함수 내 요소들을 return 해줘야 한다!
+      // 해당 부분을 작성하지 않으면, output 부분에서 해당 값들을 읽지를 못해 에러가 난다
+      return {
+        leftX,
+        leftY,
+        rightX,
+        rightY,
+        getArea,
+        getCircumstance,
+      };
+    }
+
+    let sqaure = [];
+
+    sqaure.push(makeSquare(100, 200, 150, 250));
+    sqaure.push(makeSquare(100, 200, 300, 250));
+
+    let output = "Area and Circumstance\n\n";
+
+    for (let i in sqaure) {
+      output += `Area: (${sqaure[i].leftX}, ${sqaure[i].leftY}) to (${
+        sqaure[i].rightX
+      }, ${sqaure[i].rightY}) = ${sqaure[i].getArea()}\n Circumstance: (${
+        sqaure[i].leftX
+      }, ${sqaure[i].leftY}) to (${sqaure[i].rightX}, ${
+        sqaure[i].rightY
+      }) = ${sqaure[i].getCircumstance()}\n`;
+    }
+
+    alert(output);
+  </script>
+</html>

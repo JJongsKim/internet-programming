@@ -11,6 +11,32 @@ Prompt 함수를 이용하여 임의의 두 값을 입력받고,
   <head>
     <title>LAB3</title>
   </head>
-  <script></script>
-  <body></body>
+  <script>
+    let sum = 0;
+    for (let i = 1; i <= 1000; i++) {
+      if (i % 7 == 0) {
+        sum += i;
+      }
+    }
+    alert(sum);
+
+    // 익명함수 선언해서 콜백하기
+    let promptFunc = function () {
+      let num1 = parseInt(prompt());
+      let num2 = parseInt(prompt());
+
+      return [num1 + num2, num1 * num2];
+    };
+
+    alert(promptFunc());
+
+    let indexFunc = function () {
+      let char1 = prompt();
+      let char2 = prompt();
+
+      return char1.indexOf(char2);
+    };
+
+    alert(indexFunc());
+  </script>
 </html>
