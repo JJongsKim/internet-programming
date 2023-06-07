@@ -89,6 +89,82 @@ alert(newArray); // 273, 2, 3, 4
 
 - 세터 : set~() 형태의 메서드와 같이 값을 입력하는 메서드
 
+**[생성자 함수와 상속 활용 예시]**
+
+```javascript
+// Rectangle 생성자
+function Rectangle(w, h) {
+  let width = w;
+  let height = h;
+
+  // 게터
+  this.getWidth = function () {
+    return width;
+  };
+  this.getHeight = function () {
+    return height;
+  };
+
+  // 세터
+  this.setWidth = function (w) {
+    if (w < 0) {
+      throw "길이는 음수일 수 없습니다.";
+    } else {
+      width = w;
+    }
+  };
+  this.setHeight = function (h) {
+    if (h < 0) {
+      throw "길이는 음수일 수 없습니다.";
+    } else {
+      height = h;
+    }
+  };
+}
+// 프로토타입 메서드 생성해놓기
+Rectangle.prototype.getArea = function () {
+  return this.getWidth() * this.getHeight();
+};
+
+// Square 생성자
+function Square(length) {
+  this.base = Rectangle; // Square에 Rectangle 상속
+  this.base(length, length);
+}
+
+Square.prototype = Rectangle.prototype;
+Square.prototype.constructor = Square;
+```
+
+**[window객체의 onload 이벤트 속성]**  
+onload를 통해 동적으로 페이지를 생성하고 결과물을 출력할 수 있다. 관련 예시 코드는 lab7.html 파일을 참고하면 확인해볼 수 있다.
+
+**[문서 객체 만들기]**  
+문서 객체를 만들 때, 텍스트 노드와 요소 노드를 생성하여 텍스트를 요소에 붙여준다.  
+아래는 그에 대한 간단한 예시다.
+
+```javascript
+window.onload = function () {
+  let header = document.createElement("h1"); // h1 노드 생성
+  let textNode = document.createTextNode("hello Dom"); // Text 노드 생성
+
+  header.appendChild(textNode); // h1에 해당 텍스트를 넣기
+  document.body.appendChild(header); // h1를 body에 출력
+};
+```
+
+**[문서 객체를 가져오는 방법]**
+
+- document.getElementById(아이디명)
+- document.getElementByName(name속성값)
+- document.getElementsByTagName(태그명)
+- document.getElementsByClassName(클래스명)
+- document.querySelectorAll(선택자)
+
+**[이벤트 버블링]**  
+이벤트 버블링은 자식 노드에서 부모 노드 순으로 이벤트가 실행되는 것을 의미한다.  
+가끔은 이 버블링을 막아야 할 경우가 생기는데, 보통 event.stopPropagation()을 통해 막는다.
+
 ## Node.js, Restful API
 
 ## JSP
